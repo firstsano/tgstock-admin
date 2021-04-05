@@ -3,6 +3,7 @@ import React from 'react'
 import SignIn from './auth/SignIn'
 
 import CreateChannel from './channels/Create'
+import ChannelList from './channels/List'
 
 import Settings from './settings/Index'
 
@@ -21,4 +22,5 @@ export const unauthorizedRoutes: RouteOption[] = [SignIn]
 export const authorizedRoutes: RouteOption[] = [
   Settings,
   CreateChannel,
+  ChannelList,
 ]
