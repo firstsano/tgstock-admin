@@ -1,0 +1,20 @@
+.block {
+  margin: 3px 0;
+}
+
+.label {
+  cursor: pointer;
+}
+
+.labelBlock {
+  text-align: right;
+}
+
+.naTag {
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  transform: scale(0.7);
+  -webkit-transform: scale(0.7);
+  -moz-transform: scale(0.7);
+}

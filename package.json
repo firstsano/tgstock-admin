@@ -1,0 +1,60 @@
+{
+  "name": "web-tgstock-admin",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@ant-design/icons": "^4.2.2",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/humps": "^2.0.0",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "@types/react-router-dom": "^5.1.5",
+    "antd": "^4.5.4",
+    "antd-mask-input": "^0.1.14",
+    "axios": "^0.19.2",
+    "formik": "^2.1.5",
+    "formik-antd": "^2.0.1",
+    "humps": "^2.0.1",
+    "lodash": "^4.17.21",
+    "moment-timezone": "^0.5.33",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.3",
+    "translitit-engine": "^0.1.1",
+    "typescript": "~3.8.3"
+  },
+  "scripts": {
+    "start": "PORT=8888 react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "fmt": "prettier --write 'src/**/*.{ts,tsx,json,html}'",
+    "fmt-check": "prettier --list-different 'src/**/*.{ts,tsx,json,html}'",
+    "lint": "eslint -f codeframe --ext .js,.ts,.tsx src/",
+    "lint-fix": "eslint --fix --ext .js,.ts,.tsx src/",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.168",
+    "prettier": "^2.0.5"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

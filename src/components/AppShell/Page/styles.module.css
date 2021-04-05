@@ -1,0 +1,40 @@
+.layout {
+  min-height: 100vh;
+}
+
+.header {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.headerContent {
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.unauthorizedPage {
+  margin: 0 auto;
+  padding: 56px 24px 16px;
+  width: 100%;
+  max-width: 1200px;
+  background: #fff;
+}
+
+.authorizedPage {
+  margin: 0 auto;
+  width: 100%;
+  background: #fff;
+}
+
+.authorizedPageSider {
+  height: 100vh;
+}
+
+.authorizedPageContent {
+  padding: 16px 24px;
+  background: #fff;
+}
