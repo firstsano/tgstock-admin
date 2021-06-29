@@ -1,41 +1,34 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import { notification } from 'antd'
-import { FormikHelpers } from 'formik'
-import { CreateChannelRequest as FormData, useCreateChannel} from "../../../services/api/channels";
-import { isValidationError } from '../../../services/api/client/types'
+import {
+  CreateChannelRequest,
+  useCreateChannel,
+} from '../../../services/api/channels'
 import { View } from './View'
+import { channelsPath } from '../../../routes/paths'
 
 export const Container: React.FunctionComponent = () => {
-  const [createChannel, { error }] = useCreateChannel()
+  const history = useHistory()
+  const [createChannel] = useCreateChannel()
 
-  const onSubmit = (
-    form: FormData,
-    { setErrors }: FormikHelpers<FormData>
-  ) => {
-    return createChannel(form)
-      .then(() => {
+  const sendCreateChannel = (channel: CreateChannelRequest) => {
+    return createChannel(channel)
+      .then((channel) => {
         notification.success({
           message: 'Канал успешно добавлен',
           duration: 3,
         })
+        history.push(channelsPath())
       })
       .catch((error) => {
         notification.error({
           message: 'Возникли ошибки при добавлении канала',
           duration: 3,
         })
-        if (isValidationError(error)) {
-          setErrors(error.fieldErrors)
-        }
+        throw error
       })
   }
 
-  return (
-    <View
-      initialValues={{
-        name: ''
-      }}
-      onSubmit={onSubmit}
-    />
-  )
+  return <View createChannel={sendCreateChannel} />
 }

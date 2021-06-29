@@ -49,7 +49,7 @@ export function AsyncStates<ResponseData>({
         ) : (
           <Result
             status="500"
-            title="Проблемка"
+            title="Возникла проблема при загрузке"
             subTitle={errorMessage}
             extra={
               reload && (
@@ -64,5 +64,5 @@ export function AsyncStates<ResponseData>({
     )
   }
 
-  return <>{renderData(response.data)}</>
+  return <> {renderData(response.data)} </>
 }

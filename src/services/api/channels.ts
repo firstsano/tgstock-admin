@@ -1,27 +1,58 @@
 import { useAPI } from './client/useAPI'
-import { ListResponse } from "./client/types";
+import { ListResponse, PaginationRequest, Response } from './client/types'
 
 export type ChannelListItem = {
   id: string
   name: string
   createdAt: string
   updatedAt: string
+  avatar: {
+    publicUrl: string
+  }
+  profile: {
+    title: string
+    username: string
+  }
+  categories: {
+    id: string
+    name: string
+  }[]
+}
+export type ChannelListRequest = PaginationRequest
+type ChannelListResponse = ListResponse<ChannelListItem>
+export const useChannels = () => {
+  return useAPI<ChannelListResponse, ChannelListRequest>('GET', '/channels', {
+    withToken: true,
+  })
 }
 
-type ChannelListResponse = ListResponse<ChannelListItem>
-
-export const useChannels = () => {
-  return useAPI<ChannelListResponse, undefined>(
-    'GET',
-    '/channels',
-    {
-      withToken: true,
-    }
-  )
+export type ShowChannel = {
+  id: string
+  name: string
+  createdAt: string
+  updatedAt: string
+  avatar: {
+    publicUrl: string
+  }
+  profile: {
+    title: string
+    username: string
+    description: string
+  }
+  categories: {
+    name: string
+  }[]
+}
+type ShowChannelResponse = Response<ShowChannel>
+export const useChannel = (id: string) => {
+  return useAPI<ShowChannelResponse, undefined>('GET', `/channels/${id}`, {
+    withToken: true,
+  })
 }
 
 export type CreateChannelRequest = {
   name: string
+  categoriesIds?: string[]
 }
 export type CreateChannelResponse = {
   id: string
@@ -29,7 +60,6 @@ export type CreateChannelResponse = {
   createdAt: string
   updatedAt: string
 }
-
 export const useCreateChannel = () => {
   return useAPI<CreateChannelResponse, CreateChannelRequest>(
     'POST',
@@ -38,4 +68,10 @@ export const useCreateChannel = () => {
       withToken: true,
     }
   )
+}
+
+export const useDeleteChannel = (id: string) => {
+  return useAPI<undefined, undefined>('DELETE', `/channels/${id}`, {
+    withToken: true,
+  })
 }

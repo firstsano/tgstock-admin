@@ -1,3 +1,3 @@
 import { Container } from './Container'
 
-export { Container as CreateChannel }
+export { Container as Form }
