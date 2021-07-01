@@ -1,6 +1,8 @@
 import humps from 'humps'
 
 export const validation = {
+  taken: 'Такое значение уже существует',
+  relatedModelExist: 'У объекта есть зависимости',
   mustBeFilled: 'Поле должно быть заполнено',
   mustBeValidRussianName: 'Допустимы только русские символы',
   wrongFormat: 'Неверный формат',

@@ -4,6 +4,9 @@ import SignIn from './auth/SignIn'
 
 import CreateChannel from './channels/Create'
 import ChannelList from './channels/List'
+import ShowChannel from './channels/Show'
+
+import CategoryList from './categories/List'
 
 import Settings from './settings/Index'
 
@@ -23,4 +26,6 @@ export const authorizedRoutes: RouteOption[] = [
   Settings,
   CreateChannel,
   ChannelList,
+  ShowChannel,
+  CategoryList,
 ]

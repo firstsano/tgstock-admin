@@ -1,3 +1,3 @@
 import { Container } from './Container'
 
-export { Container as ChannelList }
+export { Container as ChannelsTable }

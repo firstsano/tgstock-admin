@@ -1,4 +1,4 @@
-import { ChannelList} from "../../pages/channels/List";
+import { List } from '../../pages/channels'
 import { channelsPath } from '../paths'
 
 export default {
@@ -6,5 +6,5 @@ export default {
   exact: true,
   strict: false,
   path: channelsPath(),
-  component: ChannelList,
+  component: List,
 }

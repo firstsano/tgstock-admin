@@ -1,34 +1,29 @@
 import React from 'react'
-import { Divider } from 'antd'
+import { Divider, Button, Row, Col } from 'antd'
 import { ChannelsTable } from './components'
-import { ChannelListItem } from "../../../services/api/channels";
+import { createChannelPath } from '../../../routes/paths'
+import { PlusOutlined } from '@ant-design/icons'
 
-type Props = {
-  channels?: ChannelListItem[]
-  meta?: {
-    page: number | null
-    perPage: number | null
-    totalCount: number
-  }
-  isLoading: boolean
-}
-
-export const View: React.FunctionComponent<Props> = ({
-  channels,
-  meta,
-  isLoading,
-}) => {
+export const View: React.FunctionComponent = () => {
   return (
     <>
-      <h2>Каналы</h2>
-
+      <Row>
+        <Col span={12}>
+          <h2>Каналы</h2>
+        </Col>
+        <Col span={12}>
+          <Button
+            href={createChannelPath()}
+            type="primary"
+            style={{ float: 'right' }}
+          >
+            <PlusOutlined />
+            Добавить канал
+          </Button>
+        </Col>
+      </Row>
       <Divider />
-
-      <ChannelsTable
-        channels={channels}
-        meta={meta}
-        isLoading={isLoading}
-      />
+      <ChannelsTable />
     </>
   )
 }

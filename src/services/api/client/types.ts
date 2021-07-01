@@ -1,5 +1,12 @@
 export type Method = 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE'
 
+export type PaginationData = {
+  page: number | null
+  perPage: number | null
+  pagesCount: number
+  totalCount: number
+}
+
 // Для описания ответов от АПИ
 export type Response<Data> = {
   data: Data
@@ -8,12 +15,7 @@ export type Response<Data> = {
 // Для описания ответов с пагинацией
 export type ListResponse<Data> = {
   data: Data[]
-  meta: {
-    page: number | null
-    perPage: number | null
-    pagesCount: number
-    totalCount: number
-  }
+  meta: PaginationData
 }
 
 // Параметры пагинации

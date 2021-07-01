@@ -1,4 +1,4 @@
-import { CreateChannel } from '../../pages/channels/Create'
+import { Create } from '../../pages/channels'
 import { createChannelPath } from '../paths'
 
 export default {
@@ -6,5 +6,5 @@ export default {
   exact: true,
   strict: false,
   path: createChannelPath(),
-  component: CreateChannel,
+  component: Create,
 }
