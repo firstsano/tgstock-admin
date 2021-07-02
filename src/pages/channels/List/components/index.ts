@@ -1,3 +1,4 @@
 import { ChannelsTable } from './ChannelsTable'
+import { Search } from './Search'
 
-export { ChannelsTable }
+export { ChannelsTable, Search }

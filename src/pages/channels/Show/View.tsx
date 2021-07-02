@@ -1,8 +1,8 @@
 import React from 'react'
-import { Divider, Avatar, Tag, Col, Button, Row } from 'antd'
+import { Divider, Avatar, Tag, Col, Row } from 'antd'
 import { ShowChannel } from '../../../services/api/channels'
 import { Property } from '../../../components'
-import { DeleteOutlined, SendOutlined } from '@ant-design/icons'
+import { SendOutlined } from '@ant-design/icons'
 import { DeleteChannel } from './components'
 
 type Props = {
@@ -21,15 +21,12 @@ export const View: React.FunctionComponent<Props> = ({
           <h2> Канал | {channel.profile.title} </h2>
         </Col>
         <Col span={12}>
-          <DeleteChannel channel={channel} removeChannel={removeChannel}>
-            <Button type="primary" danger style={{ float: 'right' }}>
-              <DeleteOutlined />
-              Удалить канал
-            </Button>
-          </DeleteChannel>
+          <DeleteChannel channel={channel} removeChannel={removeChannel} />
         </Col>
       </Row>
+
       <Divider />
+
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div style={{ width: 200, marginRight: 15 }}>
           <Avatar
@@ -48,7 +45,7 @@ export const View: React.FunctionComponent<Props> = ({
           <Divider />
           <Property label="Категории">
             {channel.categories.map((category) => (
-              <Tag>{category.name}</Tag>
+              <Tag key={category.id}>{category.name}</Tag>
             ))}
           </Property>
         </div>

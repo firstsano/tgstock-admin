@@ -18,7 +18,9 @@ export type ChannelListItem = {
     name: string
   }[]
 }
-export type ChannelListRequest = PaginationRequest
+export type ChannelListRequest = PaginationRequest & {
+  name?: string
+}
 type ChannelListResponse = ListResponse<ChannelListItem>
 export const useChannels = () => {
   return useAPI<ChannelListResponse, ChannelListRequest>('GET', '/channels', {
@@ -40,6 +42,7 @@ export type ShowChannel = {
     description: string
   }
   categories: {
+    id: string
     name: string
   }[]
 }

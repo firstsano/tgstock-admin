@@ -1,7 +1,8 @@
 import React from 'react'
-import { notification, Popconfirm } from 'antd'
+import { Button, notification, Popconfirm } from 'antd'
 import { ShowChannel } from '../../../../services/api/channels'
 import { useDeleteChannel } from '../../../../services/api/channels'
+import { DeleteOutlined } from '@ant-design/icons'
 
 type Props = {
   channel: ShowChannel
@@ -11,7 +12,6 @@ type Props = {
 export const DeleteChannel: React.FunctionComponent<Props> = ({
   channel,
   removeChannel,
-  children,
 }) => {
   const [deleteChannel] = useDeleteChannel(channel.id)
 
@@ -32,7 +32,10 @@ export const DeleteChannel: React.FunctionComponent<Props> = ({
       okText="Да"
       cancelText="Нет"
     >
-      {children}
+      <Button type="primary" danger style={{ float: 'right' }}>
+        <DeleteOutlined />
+        Удалить канал
+      </Button>
     </Popconfirm>
   )
 }

@@ -1,10 +1,28 @@
 import React from 'react'
 import { Divider, Button, Row, Col } from 'antd'
-import { ChannelsTable } from './components'
+import { ChannelsTable, Search } from './components'
 import { createChannelPath } from '../../../routes/paths'
 import { PlusOutlined } from '@ant-design/icons'
+import { ChannelListItem } from '../../../services/api/channels'
+import { PaginationData } from '../../../services/api/client/types'
 
-export const View: React.FunctionComponent = () => {
+type Props = {
+  search?: string
+  channels?: ChannelListItem[]
+  isLoading: boolean
+  pagination?: PaginationData
+  onPaginationChange: (page: number, perPage?: number) => void
+  onSearch: (value: string | undefined) => void
+}
+
+export const View: React.FunctionComponent<Props> = ({
+  search,
+  channels,
+  isLoading,
+  pagination,
+  onPaginationChange,
+  onSearch,
+}) => {
   return (
     <>
       <Row>
@@ -22,8 +40,19 @@ export const View: React.FunctionComponent = () => {
           </Button>
         </Col>
       </Row>
+
       <Divider />
-      <ChannelsTable />
+
+      <Search value={search} handleSearch={onSearch} />
+
+      <Divider />
+
+      <ChannelsTable
+        channels={channels}
+        isLoading={isLoading}
+        pagination={pagination}
+        onPaginationChange={onPaginationChange}
+      />
     </>
   )
 }

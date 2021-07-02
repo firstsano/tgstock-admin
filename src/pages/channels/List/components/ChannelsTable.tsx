@@ -1,10 +1,10 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { Avatar, Table, Tag } from 'antd'
-import { PaginationData } from '../../../../../services/api/client/types'
-import { defaultPagination } from '../../../../../services/api/client/types'
-import { ChannelListItem } from '../../../../../services/api/channels'
-import { channelPath } from '../../../../../routes/paths'
+import { PaginationData } from '../../../../services/api/client/types'
+import { defaultPagination } from '../../../../services/api/client/types'
+import { ChannelListItem } from '../../../../services/api/channels'
+import { channelPath } from '../../../../routes/paths'
 import { UserOutlined } from '@ant-design/icons'
 
 type TableProps = {
@@ -14,7 +14,7 @@ type TableProps = {
   isLoading: boolean
 }
 
-export const View: React.FunctionComponent<TableProps> = ({
+export const ChannelsTable: React.FunctionComponent<TableProps> = ({
   channels,
   pagination,
   onPaginationChange,
