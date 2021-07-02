@@ -1,4 +1,4 @@
-FROM nginx:1.18-alpine
+FROM registry.tgplace.ru:443/infra/docker-images/nginx-for-front:1.18
 
 EXPOSE 80
 
