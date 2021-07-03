@@ -77,8 +77,8 @@ build_image:prod:
     - build:prod
   script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-    - docker build -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
-    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+    - docker build -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_TAG" .
+    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_TAG"
   services:
     - docker:dind
   only: 
@@ -128,7 +128,7 @@ deploy-to-vm:prod:
           ssh ${DEPLOY_USER}@${DEPLOY_HOST_PROD} << EOF
           docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
           docker rm -f ${PROJECT_NAME}-${PROJECT_CONFIGURATION} && docker image prune -af || true
-          docker run -d -p 5050:80  --restart always --name ${PROJECT_NAME}-${PROJECT_CONFIGURATION} ${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_SLUG}
+          docker run -d -p 5050:80  --restart always --name ${PROJECT_NAME}-${PROJECT_CONFIGURATION} ${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_SLUG}-$CI_COMMIT_TAG
           docker logout $CI_REGISTRY
           EOF
   variables:
