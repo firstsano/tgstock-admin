@@ -1,4 +1,3 @@
-
 stages:
   - check
   - build
@@ -39,7 +38,7 @@ build:
   variables:
     REACT_APP_API_URL: 'https://admin-dev.tgplace.ru/admin'
   only:
-    - refs
+    - branches
 
 build:prod:
   stage: build
@@ -69,7 +68,7 @@ build_image:
   services:
     - docker:dind
   only:
-    - refs
+    - branches
 
 build_image:prod:
   stage: build_image
@@ -111,7 +110,7 @@ deploy-to-vm:
     PROJECT_CONFIGURATION: dev
   when: manual
   only:
-    - refs
+    - branches
 
 deploy-to-vm:prod:
   stage: deploy
