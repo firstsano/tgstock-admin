@@ -1,4 +1,4 @@
-import SignIn from '../../pages/auth/SignIn'
+import { SignIn } from '../../pages/auth'
 import { signInPath } from '../paths'
 
 export default {

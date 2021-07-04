@@ -10,15 +10,11 @@ import { isValidationError } from '../../../services/api/client/types'
 import { FormikHelpers } from 'formik'
 
 type Form = SignInRequest
-const initialValues: Form = {
-  email: '',
-  password: '',
-}
 
 export const Container: React.FunctionComponent = () => {
   const history = useHistory()
   const { setAuth } = useAuth()
-  const [signIn, { error }] = useSignIn()
+  const [signIn] = useSignIn()
 
   const onSubmit = (form: Form, { setErrors }: FormikHelpers<Form>) => {
     return signIn(form)
@@ -26,7 +22,7 @@ export const Container: React.FunctionComponent = () => {
         setAuth(data.token, data.admin)
         history.push(defaultPath())
       })
-      .catch(() => {
+      .catch((error) => {
         if (error && isValidationError(error)) {
           setErrors(error.fieldErrors)
           notification.error({
@@ -37,5 +33,5 @@ export const Container: React.FunctionComponent = () => {
       })
   }
 
-  return <View initialValues={initialValues} onSubmit={onSubmit} />
+  return <View onSubmit={onSubmit} />
 }
