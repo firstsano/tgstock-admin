@@ -35,9 +35,19 @@ export const View: React.FunctionComponent<Props> = ({
         <Row gutter={[32, 0]}>
           <Col span={12}>
             <FormItem name="categoriesIds" label="Категории">
-              <Select mode="tags" name="categoriesIds">
+              <Select
+                mode="multiple"
+                name="categoriesIds"
+                placeholder="Выберите категории"
+                optionLabelProp="label"
+                optionFilterProp="label"
+              >
                 {categories.map((category) => (
-                  <Option key={category.id} value={category.id}>
+                  <Option
+                    key={category.id}
+                    label={category.name}
+                    value={category.id}
+                  >
                     {category.name}
                   </Option>
                 ))}
