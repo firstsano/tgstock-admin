@@ -1,12 +1,14 @@
 import React from 'react'
 import { Col, Divider, Row } from 'antd'
-import { Form, FormItem, Input, SubmitButton, Select } from 'formik-antd'
+import { Form, FormItem, SubmitButton, Select } from 'formik-antd'
 import { Formik } from 'formik'
 import {
   CreateChannelRequest as FormData,
   CreateChannelResponse,
 } from '../../../../../services/api/channels'
 import { CategoryListItem } from '../../../../../services/api/categories'
+import { NameInput } from './NameInput'
+import { Hint } from '../../../../../components/Hint'
 
 const Option = Select.Option
 type Props = {
@@ -26,8 +28,16 @@ export const View: React.FunctionComponent<Props> = ({
       <Form layout="vertical" size="large">
         <Row gutter={[32, 0]}>
           <Col>
-            <FormItem name="name" label="Название" required>
-              <Input name="name" />
+            <FormItem
+              name="name"
+              label={
+                <Hint message="В виде jobGeeks или https://t.me/jobGeeks">
+                  Название
+                </Hint>
+              }
+              required
+            >
+              <NameInput name="name" placeholder="Название" />
             </FormItem>
           </Col>
         </Row>
