@@ -1,6 +1,7 @@
 import React from 'react'
 import { Tag } from 'antd'
 import styles from './styles.module.css'
+import { isEmpty } from 'lodash'
 
 const EMPTY_PROP_MESSAGE = 'N/A'
 const EMPTY_PROP_COLOR = '#ffbb99'
@@ -22,7 +23,7 @@ export const View: React.FunctionComponent<Props> = ({
       <Tag color={color} className={styles.label} onClick={onTagClick}>
         {label}
       </Tag>
-      {children ? (
+      {children && !isEmpty(children) ? (
         children
       ) : (
         <Tag color={EMPTY_PROP_COLOR} className={styles.naTag}>
