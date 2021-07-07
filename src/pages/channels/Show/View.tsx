@@ -1,9 +1,10 @@
 import React from 'react'
-import { Divider, Avatar, Tag, Col, Row } from 'antd'
+import { Divider, Avatar, Tag, Col, Row, Button } from 'antd'
 import { ShowChannel } from '../../../services/api/channels'
 import { Property } from '../../../components'
-import { SendOutlined } from '@ant-design/icons'
+import { EditOutlined, SendOutlined } from '@ant-design/icons'
 import { DeleteChannel } from './components'
+import { updateChannelPath } from '../../../routes/paths'
 
 type Props = {
   channel: ShowChannel
@@ -22,6 +23,14 @@ export const View: React.FunctionComponent<Props> = ({
         </Col>
         <Col span={12}>
           <DeleteChannel channel={channel} removeChannel={removeChannel} />
+          <Button
+            type="primary"
+            style={{ float: 'right' }}
+            href={updateChannelPath(channel.id)}
+          >
+            <EditOutlined />
+            Редактировать канал
+          </Button>
         </Col>
       </Row>
 

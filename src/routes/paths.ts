@@ -8,6 +8,7 @@ export const settingsPath = () => '/settings'
 export const createChannelPath = () => '/channels/create'
 export const channelsPath = () => '/channels'
 export const channelPath = (id = ':id') => `/channels/${id}`
+export const updateChannelPath = (id = ':id') => `/channels/${id}/update`
 
 // Categories
 export const categoriesPath = () => '/categories'

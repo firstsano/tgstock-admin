@@ -73,6 +73,25 @@ export const useCreateChannel = () => {
   )
 }
 
+export type UpdateChannelRequest = {
+  categoriesIds?: string[]
+}
+export type UpdateChannelResponse = {
+  id: string
+  name: string
+  createdAt: string
+  updatedAt: string
+}
+export const useUpdateChannel = (id: string) => {
+  return useAPI<UpdateChannelResponse, UpdateChannelRequest>(
+    'PATCH',
+    `/channels/${id}`,
+    {
+      withToken: true,
+    }
+  )
+}
+
 export const useDeleteChannel = (id: string) => {
   return useAPI<undefined, undefined>('DELETE', `/channels/${id}`, {
     withToken: true,
