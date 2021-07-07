@@ -7,12 +7,16 @@ import {
 } from '../../../services/api/channels'
 import { View } from './View'
 import { channelsPath } from '../../../routes/paths'
+import { isEmpty, omit } from 'lodash'
 
 export const Container: React.FunctionComponent = () => {
   const history = useHistory()
   const [createChannel] = useCreateChannel()
 
   const sendCreateChannel = (channel: CreateChannelRequest) => {
+    if (isEmpty(channel.categoriesIds)) {
+      channel = omit(channel, 'categoriesIds')
+    }
     return createChannel(channel)
       .then((channel) => {
         notification.success({

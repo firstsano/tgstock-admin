@@ -5,7 +5,6 @@ import {
 } from '../../../../../services/api/channels'
 import {
   CategoryListItem,
-  CreateCategoryRequest as FormData,
   defaultCategoryListRequest,
   useCategories,
 } from '../../../../../services/api/categories'
@@ -15,7 +14,9 @@ import { FormikHelpers } from 'formik'
 import { isValidationError } from '../../../../../services/api/client/types'
 
 type Props = {
-  createChannel: (form: FormData) => Promise<CreateChannelResponse | void>
+  createChannel: (
+    form: CreateChannelRequest
+  ) => Promise<CreateChannelResponse | void>
 }
 
 export const Container: React.FunctionComponent<Props> = ({
@@ -29,7 +30,7 @@ export const Container: React.FunctionComponent<Props> = ({
 
   const sendCreateChannel = (
     channel: CreateChannelRequest,
-    { setErrors }: FormikHelpers<FormData>
+    { setErrors }: FormikHelpers<CreateChannelRequest>
   ) => {
     return createChannel(channel).catch((error) => {
       if (isValidationError(error)) {

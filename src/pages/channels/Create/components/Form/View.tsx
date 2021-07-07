@@ -24,7 +24,10 @@ export const View: React.FunctionComponent<Props> = ({
   onSubmit,
 }) => {
   return (
-    <Formik<FormData> initialValues={{ name: '' }} onSubmit={onSubmit}>
+    <Formik<FormData>
+      initialValues={{ name: '', categoriesIds: undefined }}
+      onSubmit={onSubmit}
+    >
       <Form layout="vertical" size="large">
         <Row gutter={[32, 0]}>
           <Col>
