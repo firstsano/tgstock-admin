@@ -1,6 +1,3 @@
-variables:
-  REACT_APP_API_URL: 'https://admin-dev.tgplace.ru/admin'
-
 stages:
   - check
   - build
@@ -38,6 +35,26 @@ build:
     paths:
       - build
     expire_in: 25 mins
+  variables:
+    REACT_APP_API_URL: 'https://admin-dev.tgplace.ru/admin'
+  only:
+    - branches
+
+build:prod:
+  stage: build
+  image: node:12.17-alpine
+  script:
+    - echo $REACT_APP_API_URL
+    - yarn install --frozen-lockfile --prefer-offline
+    - yarn build
+  artifacts:
+    paths:
+      - build
+    expire_in: 25 mins
+  variables:
+    REACT_APP_API_URL: 'https://admin.tgplace.ru/admin'
+  only: 
+    - tags
 
 build_image:
   stage: build_image
@@ -50,7 +67,24 @@ build_image:
     - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
   services:
     - docker:dind
+  only:
+    - branches
 
+build_image:prod:
+  stage: build_image
+  image: docker:latest
+  dependencies:
+    - build:prod
+  script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker build -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_TAG" .
+    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_TAG"
+  services:
+    - docker:dind
+  only: 
+    - tags
+  environment:
+    name: dev
 
 deploy-to-vm:
   stage: deploy
@@ -75,4 +109,33 @@ deploy-to-vm:
     PROJECT_NAME: tgplace-admin-front
     PROJECT_CONFIGURATION: dev
   when: manual
+  only:
+    - branches
 
+deploy-to-vm:prod:
+  stage: deploy
+  cache: {}
+  dependencies: []
+  image: kroniak/ssh-client
+  before_script:
+      - mkdir -p ~/.ssh
+      - chmod 700 ~/.ssh
+      - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+      - echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
+      - chmod 600 ~/.ssh/id_rsa
+  script:
+      - |
+          ssh ${DEPLOY_USER}@${DEPLOY_HOST_PROD} << EOF
+          docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+          docker rm -f ${PROJECT_NAME}-${PROJECT_CONFIGURATION} && docker image prune -af || true
+          docker run -d -p 5050:80  --restart always --name ${PROJECT_NAME}-${PROJECT_CONFIGURATION} ${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_SLUG}-$CI_COMMIT_TAG
+          docker logout $CI_REGISTRY
+          EOF
+  variables:
+    PROJECT_NAME: tgplace-admin
+    PROJECT_CONFIGURATION: prod
+  when: manual
+  only:
+    - tags
+  environment:
+    name: production
