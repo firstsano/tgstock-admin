@@ -57,12 +57,12 @@ export type CreateChannelRequest = {
   name: string
   categoriesIds?: string[]
 }
-export type CreateChannelResponse = {
+export type CreateChannelResponse = Response<{
   id: string
   name: string
   createdAt: string
   updatedAt: string
-}
+}>
 export const useCreateChannel = () => {
   return useAPI<CreateChannelResponse, CreateChannelRequest>(
     'POST',

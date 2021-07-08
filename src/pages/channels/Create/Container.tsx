@@ -6,7 +6,7 @@ import {
   useCreateChannel,
 } from '../../../services/api/channels'
 import { View } from './View'
-import { channelsPath } from '../../../routes/paths'
+import { channelPath } from '../../../routes/paths'
 import { isEmpty, omit } from 'lodash'
 
 export const Container: React.FunctionComponent = () => {
@@ -18,12 +18,12 @@ export const Container: React.FunctionComponent = () => {
       channel = omit(channel, 'categoriesIds')
     }
     return createChannel(channel)
-      .then((channel) => {
+      .then(({ data: channel }) => {
         notification.success({
           message: 'Канал успешно добавлен',
           duration: 3,
         })
-        history.push(channelsPath())
+        history.push(channelPath(channel.id))
       })
       .catch((error) => {
         notification.error({

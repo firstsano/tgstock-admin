@@ -11,7 +11,10 @@ import {
 import { View } from './View'
 import { AsyncStates } from '../../../../../components'
 import { FormikHelpers } from 'formik'
-import { isValidationError } from '../../../../../services/api/client/types'
+import {
+  isValidationError,
+  isNotFoundError,
+} from '../../../../../services/api/client/types'
 
 type Props = {
   createChannel: (
@@ -33,6 +36,11 @@ export const Container: React.FunctionComponent<Props> = ({
     { setErrors }: FormikHelpers<CreateChannelRequest>
   ) => {
     return createChannel(channel).catch((error) => {
+      if (isNotFoundError(error)) {
+        setErrors({
+          name: 'Канал не был найден в телеграме',
+        })
+      }
       if (isValidationError(error)) {
         setErrors(error.fieldErrors)
       }
