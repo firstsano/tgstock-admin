@@ -2,6 +2,8 @@ import React from 'react'
 import { Button, Result, Spin, Tooltip } from 'antd'
 import { ReloadOutlined } from '@ant-design/icons'
 import styles from './styles.module.css'
+import { isNotFoundError } from '../../services/api/client/types'
+import { NotFound } from '../../pages/NotFound'
 
 type Props<ResponseData> = {
   isLoading: boolean
@@ -11,6 +13,7 @@ type Props<ResponseData> = {
   errorMessage?: string
   reload?: () => void
   inline?: boolean
+  renderNotFound?: boolean
 }
 
 // AsyncStates обрабатывает общие состояния при загрузке данных: спиннер, экран ошибки
@@ -21,6 +24,7 @@ export function AsyncStates<ResponseData>({
   renderData,
   errorMessage = 'При загрузке данных произошла ошибка',
   reload,
+  renderNotFound = false,
   inline = false,
 }: Props<ResponseData>) {
   if (isLoading) {
@@ -35,6 +39,10 @@ export function AsyncStates<ResponseData>({
         )}
       </>
     )
+  }
+
+  if (error && isNotFoundError(error) && renderNotFound) {
+    return <NotFound />
   }
 
   if (error || !response?.data) {

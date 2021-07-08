@@ -41,6 +41,7 @@ export const Container: React.FunctionComponent = () => {
 
   return (
     <AsyncStates<ShowChannel>
+      renderNotFound
       isLoading={isLoading}
       error={error}
       errorMessage="Не удалось загрузить канал"
