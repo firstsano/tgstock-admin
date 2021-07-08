@@ -17,7 +17,7 @@ type Props<ResponseData> = {
 }
 
 // AsyncStates обрабатывает общие состояния при загрузке данных: спиннер, экран ошибки
-export function AsyncStates<ResponseData>({
+export function View<ResponseData>({
   isLoading,
   response,
   error,

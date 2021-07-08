@@ -2,7 +2,7 @@ import { Update } from '../../pages/channels'
 import { updateChannelPath } from '../paths'
 
 export default {
-  name: 'CreateChannel',
+  name: 'UpdateChannel',
   exact: true,
   strict: false,
   path: updateChannelPath(),

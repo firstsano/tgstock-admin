@@ -1,30 +1,34 @@
 import React from 'react'
-import { Redirect, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import { NotFound } from '../../pages/NotFound'
-import { signInPath } from '../../routes/paths'
-import { RouteOption, defaultRoute } from '../../routes'
+import {
+  defaultRoute,
+  authorizedRoutes,
+  unauthorizedRoutes,
+} from '../../routes'
+import { useAuth } from '../../services/auth'
+import { AuthorizedRoute } from './AuthorizedRoute'
+import { UnauthorizedRoute } from './UnauthorizedRoute'
 
-type Props = {
-  isAuthorized: boolean
-  routes: RouteOption[]
-}
+export const Router: React.FunctionComponent = () => {
+  const { token } = useAuth()
+  const isAuthorized: boolean = token !== ''
 
-export const Router: React.FunctionComponent<Props> = ({
-  isAuthorized,
-  routes,
-}) => {
   return (
     <Switch>
-      {routes.map(({ name, path, exact, strict, component }) => (
-        <Route key={name} {...{ path, exact, strict, component }} />
+      {authorizedRoutes.map((route) => (
+        <AuthorizedRoute {...route} isAuthorized={isAuthorized} />
       ))}
-      {!isAuthorized && <Redirect to={signInPath()} />}
-      <Route
-        key="DefaultComponent"
+      {unauthorizedRoutes.map((route) => (
+        <UnauthorizedRoute {...route} isAuthorized={isAuthorized} />
+      ))}
+      <AuthorizedRoute
+        name="DefaultComponent"
         path="/"
         exact
         strict
         component={defaultRoute.component}
+        isAuthorized={isAuthorized}
       />
       <Route key="NotFound" component={NotFound} />
     </Switch>

@@ -5,7 +5,6 @@ import { Header } from './Header'
 import { Page } from './Page'
 import { Router } from './Router'
 import { useAuth } from '../../services/auth'
-import { authorizedRoutes, unauthorizedRoutes } from '../../routes'
 
 type Props = {
   items: {
@@ -18,7 +17,6 @@ type Props = {
 export const AppShell: React.FunctionComponent<Props> = ({ items }) => {
   const { token, admin, removeAuth } = useAuth()
   const isAuthorized: boolean = token !== ''
-  const routes = isAuthorized ? authorizedRoutes : unauthorizedRoutes
 
   return (
     <Layout className={styles.layout}>
@@ -28,7 +26,7 @@ export const AppShell: React.FunctionComponent<Props> = ({ items }) => {
         removeAuth={removeAuth}
       />
       <Page items={items} isAuthorized={isAuthorized}>
-        <Router isAuthorized={isAuthorized} routes={routes} />
+        <Router />
       </Page>
     </Layout>
   )

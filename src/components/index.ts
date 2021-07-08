@@ -1,5 +1,5 @@
 import { AppShell } from './AppShell'
-import { AsyncStates } from './AsyncStates'
+import { View as AsyncStates } from './AsyncStates/View'
 import { BackButton } from './BackButton'
 import { LabeledGroup } from './LabeledGroup'
 import { Property } from './Property'
