@@ -41,7 +41,7 @@ export const View: React.FunctionComponent<Props> = ({
           <Avatar
             shape="square"
             icon={<SendOutlined />}
-            src={channel.avatar.publicUrl}
+            src={channel.avatar?.publicUrl}
             size={200}
           />
         </div>
@@ -50,7 +50,7 @@ export const View: React.FunctionComponent<Props> = ({
           <Divider />
           <Property label="Username">{channel.profile.username}</Property>
           <Property label="Название">{channel.profile.title}</Property>
-          <Property label="Описание">{channel.profile.description}</Property>
+          <Property label="Описание">{channel.profile?.description}</Property>
           <Divider />
           <Property label="Категории">
             {channel.categories.map((category) => (

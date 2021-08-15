@@ -28,7 +28,7 @@ export const ChannelsTable: React.FunctionComponent<TableProps> = ({
       columns={[
         {
           render: (_, channel) => (
-            <Avatar icon={<UserOutlined />} src={channel.avatar.publicUrl} />
+            <Avatar icon={<UserOutlined />} src={channel.avatar?.publicUrl} />
           ),
         },
         {
