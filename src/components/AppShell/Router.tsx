@@ -17,10 +17,18 @@ export const Router: React.FunctionComponent = () => {
   return (
     <Switch>
       {authorizedRoutes.map((route) => (
-        <AuthorizedRoute {...route} isAuthorized={isAuthorized} />
+        <AuthorizedRoute
+          key={route.name}
+          {...route}
+          isAuthorized={isAuthorized}
+        />
       ))}
       {unauthorizedRoutes.map((route) => (
-        <UnauthorizedRoute {...route} isAuthorized={isAuthorized} />
+        <UnauthorizedRoute
+          key={route.name}
+          {...route}
+          isAuthorized={isAuthorized}
+        />
       ))}
       <AuthorizedRoute
         name="DefaultComponent"

@@ -7,7 +7,7 @@ export type ChannelListItem = {
   createdAt: string
   updatedAt: string
   avatar?: {
-    publicUrl?: string
+    publicUrl: string
   }
   profile: {
     title: string
@@ -34,12 +34,15 @@ export type ShowChannel = {
   createdAt: string
   updatedAt: string
   avatar?: {
-    publicUrl?: string
+    publicUrl: string
   }
   profile: {
     title: string
     username: string
     description?: string
+    subscribersCount: string
+    postCoverage: string
+    channelCoverage: string
   }
   categories: {
     id: string
