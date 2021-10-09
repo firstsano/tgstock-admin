@@ -50,7 +50,16 @@ export const View: React.FunctionComponent<Props> = ({
           <Divider />
           <Property label="Username">{channel.profile.username}</Property>
           <Property label="Название">{channel.profile.title}</Property>
-          <Property label="Описание">{channel.profile?.description}</Property>
+          <Property label="Описание">{channel.profile.description}</Property>
+          <Property label="Количество подписчиков">
+            {channel.profile.subscribersCount}
+          </Property>
+          <Property label="Охват поста">
+            {parseInt(channel.profile.postCoverage)}
+          </Property>
+          <Property label="Охват канала">
+            {channel.profile.channelCoverage} %
+          </Property>
           <Divider />
           <Property label="Категории">
             {channel.categories.map((category) => (
