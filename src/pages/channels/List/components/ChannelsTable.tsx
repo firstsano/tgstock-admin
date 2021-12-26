@@ -6,6 +6,7 @@ import { defaultPagination } from '../../../../services/api/client/types'
 import { ChannelListItem } from '../../../../services/api/channels'
 import { channelPath } from '../../../../routes/paths'
 import { UserOutlined } from '@ant-design/icons'
+import { BoolLabel } from '../../../../components'
 
 type TableProps = {
   channels?: ChannelListItem[]
@@ -38,6 +39,10 @@ export const ChannelsTable: React.FunctionComponent<TableProps> = ({
         {
           title: 'Название',
           render: (_, channel) => channel.profile.title,
+        },
+        {
+          title: 'Топ канал',
+          render: (_, channel) => <BoolLabel value={channel.top} />,
         },
         {
           title: 'Категории',

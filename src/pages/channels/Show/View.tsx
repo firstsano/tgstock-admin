@@ -1,7 +1,7 @@
 import React from 'react'
 import { Divider, Avatar, Tag, Col, Row, Button } from 'antd'
 import { ShowChannel } from '../../../services/api/channels'
-import { Property } from '../../../components'
+import { BoolLabel, Property } from '../../../components'
 import { EditOutlined, SendOutlined } from '@ant-design/icons'
 import { DeleteChannel } from './components'
 import { updateChannelPath } from '../../../routes/paths'
@@ -51,6 +51,9 @@ export const View: React.FunctionComponent<Props> = ({
           <Property label="Username">{channel.profile.username}</Property>
           <Property label="Название">{channel.profile.title}</Property>
           <Property label="Описание">{channel.profile.description}</Property>
+          <Property label="Канал ТОП">
+            <BoolLabel value={channel.top} />
+          </Property>
           <Property label="Количество подписчиков">
             {channel.profile.subscribersCount}
           </Property>

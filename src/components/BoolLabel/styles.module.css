@@ -1,0 +1,9 @@
+.featureEnabled {
+  font-weight: bolder;
+  color: #52c41a;
+}
+
+.featureDisabled {
+  font-weight: bolder;
+  color: #d9363e;
+}

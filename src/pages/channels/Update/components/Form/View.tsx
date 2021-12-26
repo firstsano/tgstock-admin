@@ -1,6 +1,6 @@
 import React from 'react'
 import { Col, Divider, Row } from 'antd'
-import { Form, FormItem, SubmitButton, Select } from 'formik-antd'
+import { Form, FormItem, SubmitButton, Select, Checkbox } from 'formik-antd'
 import { Formik } from 'formik'
 import {
   ShowChannel,
@@ -27,11 +27,19 @@ export const View: React.FunctionComponent<Props> = ({
   return (
     <Formik<FormData>
       initialValues={{
+        top: channel.top,
         categoriesIds: channel.categories.map((category) => category.id),
       }}
       onSubmit={onSubmit}
     >
       <Form layout="vertical" size="large">
+        <Row gutter={[32, 0]}>
+          <Col span={12}>
+            <FormItem name="top">
+              <Checkbox name="top"> Канал ТОП </Checkbox>
+            </FormItem>
+          </Col>
+        </Row>
         <Row gutter={[32, 0]}>
           <Col span={12}>
             <FormItem name="categoriesIds" label="Категории">

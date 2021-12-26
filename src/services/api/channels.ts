@@ -4,6 +4,7 @@ import { ListResponse, PaginationRequest, Response } from './client/types'
 export type ChannelListItem = {
   id: string
   name: string
+  top: boolean
   createdAt: string
   updatedAt: string
   avatar?: {
@@ -31,6 +32,7 @@ export const useChannels = () => {
 export type ShowChannel = {
   id: string
   name: string
+  top: boolean
   createdAt: string
   updatedAt: string
   avatar?: {
@@ -58,11 +60,13 @@ export const useChannel = (id: string) => {
 
 export type CreateChannelRequest = {
   name: string
+  top: boolean
   categoriesIds?: string[]
 }
 export type CreateChannelResponse = Response<{
   id: string
   name: string
+  top: boolean
   createdAt: string
   updatedAt: string
 }>
@@ -77,11 +81,13 @@ export const useCreateChannel = () => {
 }
 
 export type UpdateChannelRequest = {
+  top: boolean
   categoriesIds?: string[]
 }
 export type UpdateChannelResponse = {
   id: string
   name: string
+  top: boolean
   createdAt: string
   updatedAt: string
 }
