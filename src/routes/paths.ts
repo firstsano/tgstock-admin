@@ -13,4 +13,8 @@ export const updateChannelPath = (id = ':id') => `/channels/${id}/update`
 // Categories
 export const categoriesPath = () => '/categories'
 
+// Agents
+export const agentsPath = () => '/agents'
+export const createAgentPath = () => '/agents/create'
+
 export const defaultPath = settingsPath

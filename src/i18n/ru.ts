@@ -10,6 +10,7 @@ export const validation = {
   decimalRequired: 'Требуется числовое значение',
   badDate: 'Неверная дата',
   accountBalanceInsufficient: 'Недостаточно средств',
+  authFilesNotFound: 'Файлы аутентификации не найдены на удаленном хранилище',
   default: 'Ошибка валидации',
 }
 

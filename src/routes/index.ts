@@ -11,6 +11,9 @@ import CategoryList from './categories/List'
 
 import Settings from './settings/Index'
 
+import AgentList from './agents/List'
+import CreateAgent from './agents/Create'
+
 export type RouteOption = {
   name: string
   exact: boolean
@@ -30,4 +33,6 @@ export const authorizedRoutes: RouteOption[] = [
   ShowChannel,
   UpdateChannel,
   CategoryList,
+  AgentList,
+  CreateAgent,
 ]
